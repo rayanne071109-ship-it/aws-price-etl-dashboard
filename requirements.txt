@@ -1,0 +1,4 @@
+pandas
+ijson
+pyarrow
+streamlit
