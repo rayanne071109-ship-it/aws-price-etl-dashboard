@@ -25,10 +25,10 @@ cd aws-price-etl-dashboard
 pip install -r requirements.txt
 
 ## 📊 ETL Output
-![ETL Output](etl-output.png)
+![ETL Output](etl-output.png.png)
 
 ## 🌍 Dashboard - Seleção de Região
-![Dashboard AWS Prices](dashboard-region.png)
+![Dashboard AWS Prices](dashboard-region.png.png)
 
 ## 📋 Tabela de Instâncias Filtradas
 ![Tabela de Instâncias](instances-table.png)
@@ -38,4 +38,5 @@ pip install -r requirements.txt
 
 ## 🏷️ Distribuição por Família de Instância
 ![Distribuição por Família](instance-family-distribution.png)
+
 
