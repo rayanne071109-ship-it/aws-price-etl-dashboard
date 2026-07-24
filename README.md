@@ -25,16 +25,16 @@ cd aws-price-etl-dashboard
 pip install -r requirements.txt
 
 ## 📊 ETL Output
-![ETL Output](images/etl-output.png)
+![ETL Output](etl-output.png)
 
 ## 🌍 Dashboard - Seleção de Região
-![Dashboard AWS Prices](images/dashboard-region.png)
+![Dashboard AWS Prices](dashboard-region.png)
 
 ## 📋 Tabela de Instâncias Filtradas
-![Tabela de Instâncias](images/instances-table.png)
+![Tabela de Instâncias](instances-table.png)
 
 ## 📈 Gráfico Memória vs vCPU
-![Memória vs vCPU](images/memory-vcpu.png)
+![Memória vs vCPU](memory-vcpu.png)
 
 ## 🏷️ Distribuição por Família de Instância
-![Distribuição por Família](images/instance-family-distribution.png)
+![Distribuição por Família](instance-family-distribution.png)
