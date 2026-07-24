@@ -1,0 +1,12 @@
+aws-price-etl-dashboard/
+│
+├── src/
+│   ├── transform.py      # ETL: extrai, transforma e salva em Parquet
+│   └── dashboard.py      # Dashboard interativo em Streamlit
+│
+├── data/                 # Pasta para arquivos JSON e Parquet
+│   └── produtos.parquet  # Gerado pelo ETL
+│
+├── requirements.txt      # Dependências do projeto
+├── .gitignore            # Ignora venv, __pycache__, data pesada
+└── README.md             # Documentação do projeto
