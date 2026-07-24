@@ -24,17 +24,6 @@ git clone https://github.com/seu-usuario/aws-price-etl-dashboard.git
 cd aws-price-etl-dashboard
 pip install -r requirements.txt
 
-## 📊 ETL Output
-![ETL Output](etl-output.png)
-
-## 🌍 Dashboard - Seleção de Região
-![Dashboard AWS Prices](dashboard-region.png)
-
-## 📋 Tabela de Instâncias Filtradas
-![Tabela de Instâncias](instances-table.png)
-
-## 📈 Gráfico Memória vs vCPU
-![Memória vs vCPU](memory-vcpu.png)
 
 ## 🏷️ Distribuição por Família de Instância
 ![Distribuição por Família](instance-family-distribution.png)
