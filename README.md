@@ -4,6 +4,34 @@
 
 Construir um pipeline completo de engenharia de dados (Extract, Transform, Load) usando dados públicos e reais de preços de instâncias EC2 da AWS, finalizando com um dashboard interativo para explorar e comparar preços entre regiões e tipos de instância.
 
+
+## Dashboard — Prints e Análises
+
+### Tabela de instâncias filtradas por região
+
+<img src="2026-07-24_22-00.png" width="600">
+<img src="2026-07-24_22-00_1.png" width="600">
+<img src="2026-07-24_22-00_2.png" width="600">
+<img src="2026-07-24_21-36.png" width="600">
+<img src="2026-07-24_21-38.png" width="600">
+
+### Distribuição por família e memória vs vCPU
+
+<img src="2026-07-24_22-01.png" width="600">
+<img src="2026-07-24_22-01_1.png" width="600">
+
+### Top 10 tipos de VM mais baratas
+
+<img src="2026-07-24_22-01_2.png" width="600">
+
+### Comparação de preço médio por região
+
+<img src="2026-07-24_22-03.png" width="600">
+
+### Comparação de preço por tipo de instância entre regiões
+
+<img src="2026-07-24_22-05.png" width="600">
+<img src="2026-07-24_22-06.png" width="600">
 ## 2. Fonte dos dados
 
 Os dados vêm da **AWS Price List Bulk API**, um serviço público e gratuito, sem necessidade de conta AWS ou autenticação:
