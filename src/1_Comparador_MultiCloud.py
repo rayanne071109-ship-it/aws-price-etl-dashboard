@@ -6,7 +6,7 @@ st.caption("Escolha a configuração desejada e veja qual nuvem oferece o melhor
 
 @st.cache_data
 def carregar_dados():
-    return pd.read_parquet("../data/produtos_unificado.parquet")
+    return pd.read_parquet("../data/produtos.parquet")
 
 
 df = carregar_dados()

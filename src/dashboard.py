@@ -3,7 +3,7 @@ import pandas as pd
 
 @st.cache_data
 def load_data():
-    return pd.read_parquet("data/produtos.parquet")
+    return pd.read_parquet("../data/produtos.parquet")
 
 df = load_data()
 
