@@ -1,3 +1,4 @@
+import os
 import requests
 import json
 import time
@@ -7,9 +8,9 @@ from pathlib import Path
 SERVICE_ID = "6F81-5844-456A"
 BASE_URL = f"https://cloudbilling.googleapis.com/v1/services/{SERVICE_ID}/skus"
 
-# Gere em: console.cloud.google.com -> APIs & Services -> Credentials
-# (precisa habilitar a "Cloud Billing API" no projeto antes)
-API_KEY = "AIzaSyBHnp4a-TeR1WA82UGnkSR9haHqjp4LVsk"
+# A chave NUNCA fica no código. Defina a variável de ambiente antes de rodar:
+#   export GCP_API_KEY="sua_chave_aqui"
+API_KEY = os.environ.get("GCP_API_KEY")
 
 
 def extrair_skus():
@@ -24,8 +25,6 @@ def extrair_skus():
 
         print(f"  Pagina {pagina}...")
 
-        # Tenta ate 3 vezes essa pagina, com espera crescente entre tentativas
-        # (ajuda quando o erro e rate limit / instabilidade momentanea).
         for tentativa in range(1, 4):
             resposta = requests.get(BASE_URL, params=params)
             if resposta.status_code == 200:
@@ -39,7 +38,7 @@ def extrair_skus():
                 print(f"    Esperando {espera}s antes de tentar de novo...")
                 time.sleep(espera)
         else:
-            resposta.raise_for_status()  # esgotou as tentativas, agora sim estoura o erro
+            resposta.raise_for_status()
 
         resposta.raise_for_status()
         dados = resposta.json()
@@ -51,7 +50,7 @@ def extrair_skus():
         if not page_token:
             break
 
-        time.sleep(1)  # pequena pausa entre paginas pra nao estourar rate limit
+        time.sleep(1)
 
     return itens
 
@@ -59,8 +58,9 @@ def extrair_skus():
 def main():
     Path("data/gcp").mkdir(parents=True, exist_ok=True)
 
-    if API_KEY == "SUA_API_KEY_AQUI":
-        print("ATENCAO: defina sua API_KEY do Google Cloud antes de rodar este script.")
+    if not API_KEY:
+        print("ATENCAO: defina a variavel de ambiente GCP_API_KEY antes de rodar este script.")
+        print('  export GCP_API_KEY="sua_chave_aqui"')
         return
 
     print("Extraindo SKUs do Compute Engine (GCP)...")
