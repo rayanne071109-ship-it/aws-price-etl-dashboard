@@ -1,15 +1,34 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 
 st.title("Comparador Multi-Cloud")
 st.caption("Escolha a configuração desejada e veja qual nuvem oferece o melhor preço")
 
+# Caminho absoluto baseado na localizacao deste arquivo, nao no diretorio
+# de onde o streamlit foi chamado. Funciona rodando de qualquer lugar.
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
 @st.cache_data
 def carregar_dados():
-    return pd.read_parquet("../data/produtos_unificado.parquet")
-
+    return pd.read_parquet(DATA_DIR / "produtos_unificado.parquet")
 
 df = carregar_dados()
+
+# Nomes de exibicao dos provedores (a coluna "provedor" no parquet fica em
+# minusculo, ex.: "aws", "gcp" -> aqui so ajustamos como aparece na tela).
+NOMES_PROVEDORES = {
+    "aws": "AWS",
+    "azure": "Azure",
+    "gcp": "GCP",
+    "oracle": "Oracle",
+    "vultr": "Vultr",
+}
+
+
+def nome_exibicao(provedor):
+    return NOMES_PROVEDORES.get(provedor, provedor.title())
+
 
 col1, col2 = st.columns(2)
 with col1:
@@ -30,6 +49,8 @@ filtrado = df[
     & (df["memoria_gib"] >= mem_min) & (df["memoria_gib"] <= mem_max)
     & (df["sistema_operacional"].str.contains(so, case=False, na=False))
 ].copy()
+
+filtrado["provedor"] = filtrado["provedor"].astype(str).map(nome_exibicao)
 
 if filtrado.empty:
     st.warning("Nenhuma instância encontrada nessa faixa. Tente aumentar a tolerância.")
@@ -55,7 +76,7 @@ else:
 
     vencedor = melhores.iloc[0]
     st.success(
-        f"🏆 Melhor opção geral: **{vencedor.name.upper()}** — "
+        f"🏆 Melhor opção geral: **{vencedor.name}** — "
         f"{vencedor['tipo_instancia']} ({vencedor['regiao']}) "
         f"a **${vencedor['preco_hora_usd']:.4f}/hora**"
     )
